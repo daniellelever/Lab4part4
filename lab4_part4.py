@@ -26,11 +26,12 @@ Q_damp = [1,5,10,25,50]
 t_soln = np.linspace(0,10*np.pi,10000)
 yinit = np.array([0,maxswing])
 
-   
+#solving pendulum amplitude for each Q value: 1, 5, 10, 25, 50 
 for Q in Q_damp:
     result = scint.solve_ivp(pendulum_amp, [0,10*np.pi], yinit, \
                                args=(maxswing, 2), events=[event])
-
+    
+#acessing output to compare time and amplitdue
 peakval = result.y_events
 timeest = result.t_events
 inital = peakval[0]/np.exp(1)
